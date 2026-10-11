@@ -1,0 +1,917 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Love Story ❤️ Shivani Edition</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    color: #fff;
+    background: linear-gradient(135deg, #2b103f, #a51b63, #ff6b9d);
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 25px 12px;
+}
+
+header h1 {
+    font-size: clamp(30px, 6vw, 52px);
+    color: #fff;
+    text-shadow: 0 0 20px #ff9fc7;
+}
+
+header p {
+    margin-top: 8px;
+    color: #ffe2ef;
+}
+
+.container {
+    width: min(900px, 94%);
+    margin: auto;
+    padding-bottom: 35px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.13);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 10px 40px #23051d55;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    margin: auto auto 12px;
+    display: grid;
+    place-items: center;
+    font-size: 48px;
+    background: #ffbad8;
+    border-radius: 50%;
+    box-shadow: 0 0 25px #ff8fbd;
+}
+
+.profile h2 {
+    color: #ffd3e5;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    background: #ffffff30;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff4f9a, #ffd1e5);
+    transition: width 0.4s;
+}
+
+.question-number {
+    color: #ffc2dc;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.question {
+    font-size: clamp(21px, 4vw, 30px);
+    margin-bottom: 22px;
+    line-height: 1.4;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.option {
+    padding: 15px;
+    border: 1px solid #ffffff45;
+    border-radius: 14px;
+    background: #ffffff12;
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s;
+    overflow-wrap: anywhere;
+}
+
+.option:hover {
+    background: #ff4f9a55;
+    transform: translateY(-2px);
+}
+
+.option.selected {
+    background: linear-gradient(135deg, #ff4f9a, #d72d85);
+    border-color: #ffc5df;
+    box-shadow: 0 0 15px #ff4f9a66;
+}
+
+.custom-option {
+    margin-top: 15px;
+}
+
+.custom-option label {
+    display: block;
+    margin-bottom: 9px;
+    color: #ffe0ed;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ffffff55;
+    border-radius: 12px;
+    background: #ffffff15;
+    color: white;
+    outline: none;
+    font-size: 15px;
+}
+
+input::placeholder {
+    color: #f8d3e4a8;
+}
+
+input:focus {
+    border-color: #ffb4d3;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+button {
+    font-family: inherit;
+}
+
+.btn {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 13px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.back-btn {
+    background: #ffffff20;
+    color: white;
+    border: 1px solid #ffffff40;
+}
+
+.next-btn {
+    background: linear-gradient(135deg, #ff4f9a, #ff80b4);
+    color: white;
+    box-shadow: 0 5px 15px #ff4f9a44;
+}
+
+.note {
+    text-align: center;
+    color: #ffe2ef;
+    font-size: 12px;
+    margin-top: 18px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Final results */
+
+.result-title {
+    text-align: center;
+    font-size: 30px;
+    color: #ffd4e6;
+    margin-bottom: 10px;
+}
+
+.result-message {
+    text-align: center;
+    line-height: 1.7;
+    color: #fff0f6;
+    margin-bottom: 25px;
+}
+
+.score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.score-box {
+    background: #ffffff15;
+    border: 1px solid #ffffff30;
+    padding: 18px 12px;
+    border-radius: 16px;
+}
+
+.score-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+.score-heading strong {
+    font-size: 14px;
+}
+
+.score-heading span {
+    font-weight: bold;
+}
+
+.score-track {
+    height: 9px;
+    background: #ffffff25;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.7s;
+}
+
+.love { background: #ff4f91; }
+.happiness { background: #ffc34d; }
+.trust { background: #bf78ff; }
+.bond { background: #5cc9ff; }
+
+.total-box {
+    text-align: center;
+    padding: 22px 10px;
+    margin: 20px 0;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ff4f9a55, #a23eff44);
+}
+
+.total-score {
+    font-size: 42px;
+    font-weight: bold;
+    color: #ffd0e4;
+}
+
+.answers {
+    margin-top: 22px;
+}
+
+.answers h3 {
+    margin-bottom: 14px;
+    color: #ffd3e5;
+}
+
+.answer-item {
+    padding: 13px;
+    margin-bottom: 10px;
+    background: #ffffff12;
+    border-radius: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.restart-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 13px;
+    color: #ffd8e8;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 22px 10px;
+    }
+
+    .card {
+        padding: 18px 14px;
+        border-radius: 19px;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .option {
+        padding: 14px;
+    }
+
+    .score-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 12px 8px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💕 LUBH BY SUJALL 💕</h1>
+    <p>A little world made specially for Shivani ✨</p>
+</header>
+
+<main class="container">
+
+    <section class="card" id="game">
+
+        <div class="profile">
+            <div class="avatar">👸🏻</div>
+            <h2>Shivani 💗</h2>
+            <p>Your Little Love Journey</p>
+        </div>
+
+        <div class="progress-info">
+            <span id="progressText">Question 1 of 10</span>
+            <span id="progressPercent">10%</span>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="question-number" id="questionNumber">
+            QUESTION 01
+        </div>
+
+        <h2 class="question" id="questionText"></h2>
+
+        <div class="options" id="options"></div>
+
+        <div class="custom-option">
+            <label for="customAnswer">
+                💌 Or write your own answer
+            </label>
+
+            <input
+                type="text"
+                id="customAnswer"
+                placeholder="Shivani, tell me your answer..."
+                maxlength="200"
+            >
+        </div>
+
+        <div class="actions">
+            <button class="btn back-btn" id="backBtn">
+                ← Back
+            </button>
+
+            <button class="btn next-btn" id="nextBtn">
+                Next 💗 →
+            </button>
+        </div>
+
+        <p class="note">
+            No wrong answers, Shivani. Just be yourself. 💕
+        </p>
+
+    </section>
+
+    <section class="card hidden" id="results">
+
+        <h2 class="result-title">Our Love Report 💖</h2>
+
+        <p class="result-message">
+            Shivani, your answers have created a little picture
+            of your likes, happiness and the things that matter
+            to you. Every answer is special! 💕
+        </p>
+
+        <div class="score-grid" id="scoreGrid"></div>
+
+        <div class="total-box">
+            <p>💕 Our Love Story Score 💕</p>
+            <div class="total-score" id="totalScore">0%</div>
+            <p id="totalMessage"></p>
+        </div>
+
+        <div class="answers">
+            <h3>💌 Shivani's Answers</h3>
+            <div id="answerSummary"></div>
+        </div>
+
+        <button class="btn next-btn restart-btn" id="restartBtn">
+            Play Again 💗
+        </button>
+
+    </section>
+
+</main>
+
+<footer>
+    Made with love, smiles and a little bit of magic 💕
+    <br>
+    Only for Shivani 👑
+</footer>
+
+<script>
+
+// All questions are specially made for Shivani.
+
+const questions = [
+    {
+        category: "love",
+        question: "1. Shivani, tumhara favourite food kya hai? 🍕",
+        options: [
+            "🍕 Pizza",
+            "🍫 Chocolate",
+            "🍜 Momos",
+            "🍰 Something else"
+        ]
+    },
+    {
+        category: "happiness",
+        question: "2. Tumhari favourite place kaunsi hai? 🌸",
+        options: [
+            "🏞️ Mountains",
+            "🏖️ Beach",
+            "☕ Cute cafe",
+            "🌍 My own choice"
+        ]
+    },
+    {
+        category: "bond",
+        question: "3. Mere saath tum kya karna pasand karogi? 🥹",
+        options: [
+            "🎬 Movies dekhna",
+            "🚶 Long walk par jaana",
+            "💬 Hours tak baatein karna",
+            "💗 Kuch aur"
+        ]
+    },
+    {
+        category: "love",
+        question: "4. Tumhare liye sabse special person kaun hai? 💖",
+        options: [
+            "👨‍👩‍👧 Family",
+            "🫂 Best friend",
+            "💞 Someone special",
+            "✨ My own answer"
+        ]
+    },
+    {
+        category: "trust",
+        question: "5. Relationship mein tumhari first priority kya hai? 🤝",
+        options: [
+            "❤️ Loyalty",
+            "💬 Honest communication",
+            "🫶 Understanding",
+            "🌷 Something else"
+        ]
+    },
+    {
+        category: "happiness",
+        question: "6. Jab tum sad hoti ho, kya cheez tumhe khush karti hai? 🌈",
+        options: [
+            "🎵 Music sunna",
+            "🫂 Kisi se baat karna",
+            "🍦 Favourite food",
+            "💗 My own answer"
+        ]
+    },
+    {
+        category: "trust",
+        question: "7. Tum kisi par trust kab karti ho? 🥹",
+        options: [
+            "🤝 Jab woh honest ho",
+            "💖 Jab woh care kare",
+            "⏳ Jab woh time de",
+            "✨ Something else"
+        ]
+    },
+    {
+        category: "bond",
+        question: "8. Tumhara perfect day kaisa hoga? 🌅",
+        options: [
+            "🌸 Cute date",
+            "🎮 Games aur fun",
+            "🌙 Late-night talks",
+            "💌 My dream day"
+        ]
+    },
+    {
+        category: "love",
+        question: "9. Tumhe sabse zyada kya special feel karata hai? 🎁",
+        options: [
+            "💌 Sweet messages",
+            "🌹 Surprise gifts",
+            "🫶 Time aur attention",
+            "💗 Something else"
+        ]
+    },
+    {
+        category: "bond",
+        question: "10. Shivani, tum apne future mein kya sabse zyada chahti ho? ✨",
+        options: [
+            "🌈 Happiness aur peace",
+            "💖 A loving relationship",
+            "🏆 Apne dreams achieve karna",
+            "🌷 My own dream"
+        ]
+    }
+];
+
+const game = document.getElementById("game");
+const results = document.getElementById("results");
+
+const questionText = document.getElementById("questionText");
+const questionNumber = document.getElementById("questionNumber");
+const optionsBox = document.getElementById("options");
+const customAnswer = document.getElementById("customAnswer");
+
+const progressText = document.getElementById("progressText");
+const progressPercent = document.getElementById("progressPercent");
+const progressBar = document.getElementById("progressBar");
+
+const backBtn = document.getElementById("backBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let currentQuestion = 0;
+
+// Stores Shivani's answers.
+let answers = Array(questions.length).fill(null);
+
+
+// Display the current question.
+
+function showQuestion() {
+
+    const q = questions[currentQuestion];
+    const saved = answers[currentQuestion];
+
+    questionText.textContent = q.question;
+
+    questionNumber.textContent =
+        "QUESTION " + String(currentQuestion + 1).padStart(2, "0");
+
+    progressText.textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+    const percent = Math.round(
+        ((currentQuestion + 1) / questions.length) * 100
+    );
+
+    progressPercent.textContent = percent + "%";
+    progressBar.style.width = percent + "%";
+
+    optionsBox.innerHTML = "";
+
+    q.options.forEach((option) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+        button.textContent = option;
+
+        if (saved && saved.choice === option) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", () => {
+
+            // Select a fixed option.
+            answers[currentQuestion] = {
+                choice: option,
+                custom: ""
+            };
+
+            customAnswer.value = "";
+
+            // Update selected appearance.
+            document.querySelectorAll(".option").forEach(btn => {
+                btn.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+        });
+
+        optionsBox.appendChild(button);
+    });
+
+    // Restore a previously typed custom answer.
+    if (saved && saved.custom) {
+        customAnswer.value = saved.custom;
+    } else {
+        customAnswer.value = "";
+    }
+
+    backBtn.style.visibility =
+        currentQuestion === 0 ? "hidden" : "visible";
+
+    nextBtn.textContent =
+        currentQuestion === questions.length - 1
+            ? "See My Results 💖"
+            : "Next 💗 →";
+}
+
+
+// Save the answer before moving forward.
+
+function saveAnswer() {
+
+    const typed = customAnswer.value.trim();
+    const previous = answers[currentQuestion];
+
+    if (typed) {
+
+        // Custom answer takes priority if entered.
+        answers[currentQuestion] = {
+            choice: "",
+            custom: typed
+        };
+
+    } else if (!previous) {
+
+        alert("Shivani, please choose an option or write your own 💗");
+        return false;
+
+    } else if (previous.custom) {
+
+        // Keep the previously entered custom answer.
+        answers[currentQuestion] = previous;
+
+    }
+
+    return true;
+}
+
+
+// Next question or final results.
+
+nextBtn.addEventListener("click", () => {
+
+    if (!saveAnswer()) return;
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+        showQuestion();
+
+    } else {
+
+        showResults();
+
+    }
+});
+
+
+// Go back to the previous question.
+
+backBtn.addEventListener("click", () => {
+
+    if (currentQuestion > 0) {
+
+        currentQuestion--;
+        showQuestion();
+
+    }
+
+});
+
+
+// Calculate the scores based on Shivani's answers.
+
+function calculateScores() {
+
+    const scores = {
+        love: 0,
+        happiness: 0,
+        trust: 0,
+        bond: 0
+    };
+
+    questions.forEach((q, index) => {
+
+        const answer = answers[index];
+
+        if (answer && (answer.choice || answer.custom)) {
+
+            // Each answered question adds 10 points
+            // to its assigned category.
+            scores[q.category] += 10;
+
+        }
+
+    });
+
+    return scores;
+}
+
+
+// Show the final report.
+
+function showResults() {
+
+    const scores = calculateScores();
+
+    const categories = [
+        {
+            key: "love",
+            title: "❤️ Love",
+            css: "love",
+            description: "Your love-related answers"
+        },
+        {
+            key: "happiness",
+            title: "😊 Happiness",
+            css: "happiness",
+            description: "Things that make you happy"
+        },
+        {
+            key: "trust",
+            title: "🤝 Trust",
+            css: "trust",
+            description: "What matters in trust"
+        },
+        {
+            key: "bond",
+            title: "💞 Bond",
+            css: "bond",
+            description: "Your connection and quality time"
+        }
+    ];
+
+    const maxScores = {
+        love: 30,
+        happiness: 20,
+        trust: 20,
+        bond: 30
+    };
+
+    const scoreGrid = document.getElementById("scoreGrid");
+
+    scoreGrid.innerHTML = "";
+
+    categories.forEach(category => {
+
+        const score = scores[category.key];
+
+        const percentage = Math.round(
+            (score / maxScores[category.key]) * 100
+        );
+
+        const box = document.createElement("div");
+
+        box.className = "score-box";
+
+        box.innerHTML = `
+            <div class="score-heading">
+                <strong>${category.title}</strong>
+                <span>${percentage}%</span>
+            </div>
+
+            <div class="score-track">
+                <div
+                    class="score-fill ${category.css}"
+                    style="width: ${percentage}%"
+                ></div>
+            </div>
+
+            <p style="font-size:12px;margin-top:9px;color:#ffe0ed">
+                ${category.description}
+            </p>
+        `;
+
+        scoreGrid.appendChild(box);
+    });
+
+    // Total score is based on the number of answered questions.
+    const answeredCount = answers.filter(answer =>
+        answer && (answer.choice || answer.custom)
+    ).length;
+
+    const total = Math.round(
+        (answeredCount / questions.length) * 100
+    );
+
+    document.getElementById("totalScore").textContent =
+        total + "%";
+
+    document.getElementById("totalMessage").textContent =
+        `${answeredCount} out of ${questions.length} questions answered 💗`;
+
+    // Display all answers.
+
+    const summary = document.getElementById("answerSummary");
+
+    summary.innerHTML = "";
+
+    questions.forEach((q, index) => {
+
+        const answer = answers[index];
+
+        const answerText = answer.custom
+            ? answer.custom
+            : answer.choice;
+
+        const item = document.createElement("div");
+
+        item.className = "answer-item";
+
+        const questionHeading = document.createElement("strong");
+        questionHeading.textContent = q.question;
+
+        const answerParagraph = document.createElement("p");
+        answerParagraph.textContent =
+            answerText || "Not answered";
+
+        item.appendChild(questionHeading);
+        item.appendChild(answerParagraph);
+
+        summary.appendChild(item);
+    });
+
+    game.classList.add("hidden");
+    results.classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+// Restart the game.
+
+document.getElementById("restartBtn").addEventListener("click", () => {
+
+    currentQuestion = 0;
+    answers = Array(questions.length).fill(null);
+
+    results.classList.add("hidden");
+    game.classList.remove("hidden");
+
+    showQuestion();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+// Start the game.
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
+```
